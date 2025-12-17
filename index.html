@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Style Barbería | Cortes de Élite con Actitud Callejera</title>
+    <meta name="description"
+        content="La barbería más exclusiva de la ciudad. Cortes premium con actitud urbana, diseño de vanguardia y profesionalismo de clase mundial.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00f0ff;
+            --neon-purple: #b537f2;
+            --neon-pink: #ff006e;
+            --neon-green: #00ff88;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 3px;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-dark {
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Premium Gradients */
+        .gradient-neon {
+            background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 50%, var(--neon-pink) 100%);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-purple) 50%, var(--neon-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-border {
+            position: relative;
+            background: var(--dark-bg);
+            border-radius: 20px;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        /* Neon Glow Effects */
+        .neon-glow {
+            box-shadow:
+                0 0 20px rgba(0, 240, 255, 0.5),
+                0 0 40px rgba(181, 55, 242, 0.3),
+                0 0 60px rgba(255, 0, 110, 0.2);
+        }
+
+        .neon-glow-text {
+            text-shadow:
+                0 0 10px rgba(0, 240, 255, 0.8),
+                0 0 20px rgba(181, 55, 242, 0.6),
+                0 0 30px rgba(255, 0, 110, 0.4);
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(0, 240, 255, 0.5),
+                    0 0 40px rgba(181, 55, 242, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(0, 240, 255, 0.8),
+                    0 0 80px rgba(181, 55, 242, 0.6);
+            }
+        }
+
+        @keyframes rotate-gradient {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        @keyframes slide-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slide-in-right {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scale-in {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Sticky Header */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .sticky-header.scrolled {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Hero Video Overlay */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, var(--dark-bg) 100%);
+            mix-blend-mode: multiply;
+        }
+
+        /* Service Cards */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow:
+                0 30px 60px rgba(0, 240, 255, 0.3),
+                0 0 100px rgba(181, 55, 242, 0.2);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(181, 55, 242, 0.3));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+
+        /* Pricing Cards */
+        .pricing-card {
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-20px) scale(1.02);
+        }
+
+        /* Button Effects */
+        .btn-neon {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-neon:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-neon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(0, 240, 255, 0.6);
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        /* Testimonial Cards */
+        .testimonial-card {
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .custom-cursor,
+            .cursor-follower {
+                display: none;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Sticky Header -->
+    <header class="sticky-header glass-dark">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 gradient-neon rounded-xl flex items-center justify-center neon-glow">
+                    <span class="text-white font-bold text-2xl">✂️</span>
+                </div>
+                <h1 class="font-orbitron text-2xl md:text-3xl gradient-text font-bold">URBAN STYLE</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Inicio</a>
+                <a href="#servicios"
+                    class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Servicios</a>
+                <a href="#galeria" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Galería</a>
+                <a href="#reserva" class="text-gray-300 hover:text-cyan-400 transition-colors font-medium">Reserva</a>
+            </nav>
+            <a href="#reserva"
+                class="btn-neon gradient-neon px-8 py-3 rounded-full font-bold text-white text-sm md:text-base">
+                RESERVA AHORA
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute inset-0"
+                style="background-image: repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(0,240,255,.05) 50px, rgba(0,240,255,.05) 100px);">
+            </div>
+        </div>
+
+        <!-- Gradient Orbs -->
+        <div
+            class="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full blur-3xl opacity-20 animate-pulse">
+        </div>
+        <div class="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-l from-pink-500 to-purple-500 rounded-full blur-3xl opacity-20 animate-pulse"
+            style="animation-delay: 1s;"></div>
+
+        <div class="container mx-auto px-6 py-32 relative z-10">
+            <div class="text-center space-y-10">
+                <div class="inline-block glass px-6 py-3 rounded-full" style="animation: scale-in 0.8s ease-out;">
+                    <span class="text-sm md:text-base font-semibold tracking-widest gradient-text uppercase">🔥
+                        Bienvenido al Templo del Estilo Premium</span>
+                </div>
+
+                <h2 class="font-orbitron text-6xl md:text-8xl lg:text-9xl leading-tight font-black"
+                    style="animation: slide-in-left 1s ease-out;">
+                    CORTES DE<br />
+                    <span class="gradient-text neon-glow-text">ÉLITE URBANA</span>
+                </h2>
+
+                <p class="text-gray-300 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed font-light"
+                    style="animation: slide-in-right 1s ease-out;">
+                    No es solo un corte, es una <span class="gradient-text font-bold">obra maestra</span>. Transformamos
+                    tu imagen con precisión artística y actitud de vanguardia.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center pt-10"
+                    style="animation: scale-in 1.2s ease-out;">
+                    <a href="#reserva"
+                        class="btn-neon gradient-neon px-12 py-5 rounded-full font-bold text-white text-lg w-full sm:w-auto neon-glow">
+                        ⚡ RESERVA TU TURNO
+                    </a>
+                    <a href="#servicios"
+                        class="glass px-12 py-5 rounded-full font-semibold text-white hover:bg-white hover:bg-opacity-10 transition-all w-full sm:w-auto border-2 border-cyan-400">
+                        VER SERVICIOS
+                    </a>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-8 max-w-4xl mx-auto pt-20">
+                    <div class="text-center reveal glass-dark p-6 rounded-2xl">
+                        <div class="font-orbitron text-5xl md:text-6xl gradient-text font-black">2K+</div>
+                        <div class="text-gray-400 text-sm md:text-base mt-3 font-medium">Clientes VIP</div>
+                    </div>
+                    <div class="text-center reveal glass-dark p-6 rounded-2xl" style="transition-delay: 0.1s;">
+                        <div class="font-orbitron text-5xl md:text-6xl gradient-text font-black">5.0★</div>
+                        <div class="text-gray-400 text-sm md:text-base mt-3 font-medium">Calificación</div>
+                    </div>
+                    <div class="text-center reveal glass-dark p-6 rounded-2xl" style="transition-delay: 0.2s;">
+                        <div class="font-orbitron text-5xl md:text-6xl gradient-text font-black">100%</div>
+                        <div class="text-gray-400 text-sm md:text-base mt-3 font-medium">Estilo Premium</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <span class="text-sm font-semibold tracking-widest gradient-text uppercase">Nuestros Servicios
+                    Premium</span>
+                <h3 class="font-orbitron text-5xl md:text-7xl mt-6 mb-8 font-black">ELIGE TU EXPERIENCIA</h3>
+                <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                    Cada servicio es una experiencia única diseñada para elevar tu estilo al siguiente nivel.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Servicio 1 -->
+                <div class="service-card gradient-border glass p-8 rounded-3xl reveal">
+                    <div class="text-6xl mb-6">💈</div>
+                    <h4 class="font-orbitron text-2xl mb-4 gradient-text font-bold">FADE SIGNATURE</h4>
+                    <p class="text-gray-400 mb-8 text-sm leading-relaxed">
+                        El corte icónico que nunca pasa de moda. Degradado perfecto con precisión milimétrica. Tu look
+                        diario con actitud premium.
+                    </p>
+                    <div class="font-orbitron text-3xl gradient-text font-black">$35.000</div>
+                    <div class="mt-6">
+                        <a href="#reserva"
+                            class="block text-center glass px-6 py-3 rounded-full text-sm font-semibold hover:bg-white hover:bg-opacity-10 transition-all">
+                            Reservar →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="service-card gradient-border glass p-8 rounded-3xl reveal" style="transition-delay: 0.1s;">
+                    <div class="text-6xl mb-6">🪒</div>
+                    <h4 class="font-orbitron text-2xl mb-4 gradient-text font-bold">BARBA DELUXE</h4>
+                    <p class="text-gray-400 mb-8 text-sm leading-relaxed">
+                        Perfilado de barba con técnicas de barbería clásica. Líneas definidas que marcan carácter y
+                        distinción absoluta.
+                    </p>
+                    <div class="font-orbitron text-3xl gradient-text font-black">$25.000</div>
+                    <div class="mt-6">
+                        <a href="#reserva"
+                            class="block text-center glass px-6 py-3 rounded-full text-sm font-semibold hover:bg-white hover:bg-opacity-10 transition-all">
+                            Reservar →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="service-card gradient-border glass p-8 rounded-3xl reveal" style="transition-delay: 0.2s;">
+                    <div class="text-6xl mb-6">⚡</div>
+                    <h4 class="font-orbitron text-2xl mb-4 gradient-text font-bold">DISEÑO ARTÍSTICO</h4>
+                    <p class="text-gray-400 mb-8 text-sm leading-relaxed">
+                        Diseños personalizados y creativos. Rayitas, figuras, arte capilar. Tu imaginación es el único
+                        límite.
+                    </p>
+                    <div class="font-orbitron text-3xl gradient-text font-black">$45.000</div>
+                    <div class="mt-6">
+                        <a href="#reserva"
+                            class="block text-center glass px-6 py-3 rounded-full text-sm font-semibold hover:bg-white hover:bg-opacity-10 transition-all">
+                            Reservar →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Servicio 4 - Featured -->
+                <div class="service-card gradient-border glass p-8 rounded-3xl reveal relative overflow-visible"
+                    style="transition-delay: 0.3s;">
+                    <div
+                        class="absolute -top-4 -right-4 gradient-neon px-4 py-2 rounded-full text-xs font-bold neon-glow">
+                        MÁS POPULAR
+                    </div>
+                    <div class="text-6xl mb-6">🔥</div>
+                    <h4 class="font-orbitron text-2xl mb-4 gradient-text font-bold">COMBO PLATINUM</h4>
+                    <p class="text-gray-400 mb-8 text-sm leading-relaxed">
+                        La experiencia completa: Corte + Barba + Diseño + Tratamiento. Transformación total con servicio
+                        VIP.
+                    </p>
+                    <div class="font-orbitron text-3xl gradient-text font-black">$85.000</div>
+                    <div class="mt-6">
+                        <a href="#reserva"
+                            class="block text-center gradient-neon px-6 py-3 rounded-full text-sm font-bold text-white neon-glow">
+                            Reservar →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería Section -->
+    <section id="galeria" class="py-32 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900 via-opacity-5 to-transparent">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <span class="text-sm font-semibold tracking-widest gradient-text uppercase">Portfolio de
+                    Excelencia</span>
+                <h3 class="font-orbitron text-5xl md:text-7xl mt-6 mb-8 font-black">GALERÍA DE ARTE</h3>
+                <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                    Cada corte es una obra maestra. Descubre nuestro trabajo y encuentra tu próximo estilo.
+                </p>
+            </div>
+
+            <div class="gallery-grid reveal">
+                <!-- Gallery Items -->
+                <div class="gallery-item gradient-border">
+                    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&h=600&fit=crop"
+                        alt="Fade Signature" loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="font-orbitron text-2xl gradient-text font-bold block">FADE SIGNATURE</span>
+                            <span class="text-gray-300 text-sm">Precisión Perfecta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item gradient-border">
+                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600&h=600&fit=crop"
+                        alt="Diseño Artístico" loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="font-orbitron text-2xl gradient-text font-bold block">DISEÑO ARTÍSTICO</span>
+                            <span class="text-gray-300 text-sm">Creatividad Sin Límites</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item gradient-border">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&h=600&fit=crop"
+                        alt="Barba Deluxe" loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="font-orbitron text-2xl gradient-text font-bold block">BARBA DELUXE</span>
+                            <span class="text-gray-300 text-sm">Estilo Refinado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item gradient-border">
+                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=600&h=600&fit=crop"
+                        alt="Combo Platinum" loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="font-orbitron text-2xl gradient-text font-bold block">COMBO PLATINUM</span>
+                            <span class="text-gray-300 text-sm">Experiencia Completa</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item gradient-border">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&h=600&fit=crop"
+                        alt="Estilo Urbano" loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="font-orbitron text-2xl gradient-text font-bold block">ESTILO URBANO</span>
+                            <span class="text-gray-300 text-sm">Actitud Callejera</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item gradient-border">
+                    <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=600&h=600&fit=crop"
+                        alt="Corte Premium" loading="lazy">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-6">
+                        <div>
+                            <span class="font-orbitron text-2xl gradient-text font-bold block">CORTE PREMIUM</span>
+                            <span class="text-gray-300 text-sm">Elegancia Moderna</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reserva Section -->
+    <section id="reserva" class="py-32 relative overflow-hidden">
+        <!-- Background Effects -->
+        <div
+            class="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full blur-3xl opacity-10">
+        </div>
+        <div
+            class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-l from-pink-500 to-purple-500 rounded-full blur-3xl opacity-10">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-sm font-semibold tracking-widest gradient-text uppercase">Agenda tu Experiencia</span>
+                <h3 class="font-orbitron text-5xl md:text-7xl mt-6 mb-8 font-black">RESERVA TU CITA</h3>
+                <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                    No te quedes sin tu turno. Selecciona el día y hora perfectos para tu transformación.
+                </p>
+            </div>
+
+            <!-- Calendly Container -->
+            <div class="max-w-5xl mx-auto reveal">
+                <div class="gradient-border glass-dark rounded-3xl overflow-hidden" style="min-height: 700px;">
+                    <!-- Calendly Inline Widget -->
+                    <div class="calendly-inline-widget"
+                        data-url="https://calendly.com/juangravitygrant/corte?hide_gdpr_banner=1&primary_color=00f0ff"
+                        style="min-width:320px;height:700px;">
+                    </div>
+                </div>
+
+                <div class="text-center mt-10">
+                    <p class="text-gray-400">
+                        ¿Necesitas ayuda? <a href="tel:+573001234567"
+                            class="gradient-text hover:underline font-bold text-lg">Llámanos: +57 300 123 4567</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <span class="text-sm font-semibold tracking-widest gradient-text uppercase">Experiencias Reales</span>
+                <h3 class="font-orbitron text-5xl md:text-7xl mt-6 mb-8 font-black">LO QUE DICEN NUESTROS CLIENTES</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Testimonio 1 -->
+                <div class="testimonial-card gradient-border glass p-8 rounded-3xl reveal">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 rounded-full gradient-neon flex items-center justify-center text-3xl neon-glow">
+                            👤</div>
+                        <div class="ml-5">
+                            <div class="font-bold text-xl">Carlos Mendoza</div>
+                            <div class="text-yellow-400 text-lg">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic leading-relaxed">
+                        "Increíble experiencia. El fade quedó perfecto, las líneas impecables. Definitivamente la mejor
+                        barbería de la ciudad. Volveré cada semana."
+                    </p>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="testimonial-card gradient-border glass p-8 rounded-3xl reveal"
+                    style="transition-delay: 0.1s;">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 rounded-full gradient-neon flex items-center justify-center text-3xl neon-glow">
+                            👤</div>
+                        <div class="ml-5">
+                            <div class="font-bold text-xl">Andrés Pérez</div>
+                            <div class="text-yellow-400 text-lg">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic leading-relaxed">
+                        "El ambiente es único, música increíble, vibra premium. Y el corte... simplemente espectacular.
+                        100% recomendado para quienes buscan calidad."
+                    </p>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="testimonial-card gradient-border glass p-8 rounded-3xl reveal"
+                    style="transition-delay: 0.2s;">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-16 h-16 rounded-full gradient-neon flex items-center justify-center text-3xl neon-glow">
+                            👤</div>
+                        <div class="ml-5">
+                            <div class="font-bold text-xl">Miguel Ramírez</div>
+                            <div class="text-yellow-400 text-lg">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic leading-relaxed">
+                        "Pedí el Combo Platinum y fue una transformación total. Profesionales de élite, atención de
+                        primera. Esta es LA barbería definitiva."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 border-t border-gray-800 glass-dark">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Columna 1 - Brand -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-14 h-14 gradient-neon rounded-xl flex items-center justify-center neon-glow">
+                            <span class="text-white font-bold text-2xl">✂️</span>
+                        </div>
+                        <h4 class="font-orbitron text-3xl gradient-text font-bold">URBAN STYLE</h4>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed max-w-md">
+                        La barbería premium con más estilo de la ciudad. Cortes de élite con actitud urbana, diseño de
+                        vanguardia y profesionalismo de clase mundial.
+                    </p>
+                    <div class="flex space-x-4 mt-8">
+                        <a href="#"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:neon-glow transition-all text-xl">
+                            📘
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:neon-glow transition-all text-xl">
+                            📷
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:neon-glow transition-all text-xl">
+                            🎵
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:neon-glow transition-all text-xl">
+                            💬
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Columna 2 - Horarios -->
+                <div>
+                    <h5 class="font-orbitron text-xl mb-6 gradient-text font-bold">HORARIOS</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 gradient-neon rounded-full mr-3"></span>
+                            Lun - Vie: 9:00 AM - 8:00 PM
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 gradient-neon rounded-full mr-3"></span>
+                            Sábados: 9:00 AM - 7:00 PM
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 gradient-neon rounded-full mr-3"></span>
+                            Domingos: 10:00 AM - 4:00 PM
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3 - Contacto -->
+                <div>
+                    <h5 class="font-orbitron text-xl mb-6 gradient-text font-bold">CONTACTO</h5>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <span class="mr-3 text-xl">📍</span>
+                            <span>Calle 123 #45-67<br />Barrio Centro, Ciudad</span>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-3 text-xl">📱</span>
+                            <a href="tel:+573001234567" class="hover:text-cyan-400 transition-colors">+57 300 123
+                                4567</a>
+                        </li>
+                        <li class="flex items-center">
+                            <span class="mr-3 text-xl">📧</span>
+                            <a href="mailto:info@urbanstyle.com"
+                                class="hover:text-cyan-400 transition-colors">info@urbanstyle.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-500">
+                    &copy; 2024 <span class="gradient-text font-bold">Urban Style Barbería</span>. Todos los derechos
+                    reservados. Diseñado con 🔥 y actitud premium.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Calendly Script -->
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+    <!-- JavaScript -->
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        const follower = document.querySelector('.cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+
+            setTimeout(() => {
+                follower.style.left = e.clientX - 20 + 'px';
+                follower.style.top = e.clientY - 20 + 'px';
+            }, 100);
+        });
+
+        // Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Sticky Header
+        const header = document.querySelector('.sticky-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll Reveal
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.gradient-orb');
+
+            parallaxElements.forEach((el, index) => {
+                const speed = (index + 1) * 0.3;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Interactive Service Cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // Loading Animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+
+</body>
+
+</html>
