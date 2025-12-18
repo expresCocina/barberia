@@ -537,11 +537,22 @@
         /* Testimonial Cards */
         .testimonial-card {
             transition: all 0.4s ease;
+            background: rgba(10, 10, 15, 0.85) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
         }
 
         .testimonial-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
+            background: rgba(10, 10, 15, 0.95) !important;
+        }
+
+        /* Ensure testimonial text is visible */
+        .testimonial-card p,
+        .testimonial-card div {
+            position: relative;
+            z-index: 2;
         }
 
         /* Responsive Typography */
