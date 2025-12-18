@@ -212,6 +212,7 @@
             position: relative;
             background: var(--dark-bg);
             border-radius: 20px;
+            z-index: 1;
         }
 
         .gradient-border::before {
@@ -225,6 +226,13 @@
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            z-index: -1;
+        }
+
+        /* Ensure content is above the border */
+        .gradient-border>* {
+            position: relative;
+            z-index: 2;
         }
 
         /* Neon Glow Effects */
